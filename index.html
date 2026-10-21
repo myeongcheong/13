@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>이뤄지지 않을 꿈이라도 | 에델</title>
+
+<!-- 판타지 영문 서체 -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+<!-- 카페24 고운밤 -->
+<style>
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Oneprettynight.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ivory: #fffdf8;
+  --paper: #f9f4e9;
+  --gold: #c6a878;
+  --light-gold: #ead9b6;
+  --rose-gold: #d8a5a0;
+  --sky: #b9dce8;
+  --pale-blue: #e7f4f8;
+  --ink: #77717b;
+  --dark: #343746;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Cafe24Oneprettynight", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      ellipse at 50% 15%,
+      rgba(255,255,255,.95),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 15% 80%,
+      rgba(185,220,235,.45),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 85% 70%,
+      rgba(229,210,193,.35),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      #dceaf0,
+      #f8f6f2 45%,
+      #d5e1e9
+    );
+}
+
+/* =========================
+   배경의 몽환적인 빛
+========================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle at 25% 30%,
+      rgba(255,255,255,.6),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 75% 65%,
+      rgba(183,217,230,.3),
+      transparent 35%
+    );
+
+  animation: breathe 9s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  from {
+    opacity: .45;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* =========================
+   하늘색 장미꽃잎
+========================= */
+
+#petal-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.petal {
+  position: absolute;
+  top: -50px;
+
+  width: 17px;
+  height: 25px;
+
+  background:
+    radial-gradient(
+      ellipse at 30% 25%,
+      #f3fcff 0%,
+      #c5e6f1 40%,
+      #90bed3 100%
+    );
+
+  border-radius:
+    75% 15% 70% 25%;
+
+  box-shadow:
+    0 0 8px rgba(196,231,243,.5),
+    inset 2px 2px 5px rgba(255,255,255,.7);
+
+  opacity: .75;
+
+  animation: petalFall linear forwards;
+}
+
+@keyframes petalFall {
+  0% {
+    transform:
+      translate3d(0,-30px,0)
+      rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: .8;
+  }
+
+  85% {
+    opacity: .7;
+  }
+
+  100% {
+    transform:
+      translate3d(var(--drift),110vh,0)
+      rotate(680deg);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   반짝이는 별빛
+========================= */
+
+.star {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+
+  box-shadow:
+    0 0 8px #fff,
+    0 0 15px #d8c29c;
+
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,100% {
+    opacity: .1;
+    transform: scale(.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+/* =========================
+   클릭 로즈골드 마법진
+========================= */
+
+.magic-circle {
+  position: fixed;
+
+  width: 110px;
+  height: 110px;
+
+  border: 1px solid rgba(218,157,155,.8);
+  border-radius: 50%;
+
+  pointer-events: none;
+  z-index: 100;
+
+  transform: translate(-50%,-50%);
+
+  box-shadow:
+    0 0 12px rgba(230,174,165,.7),
+    inset 0 0 15px rgba(230,174,165,.35),
+    0 0 35px rgba(231,190,177,.4);
+
+  animation: magicAppear 1.2s ease-out forwards;
+}
+
+.magic-circle::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+
+  border: 1px dashed rgba(209,151,150,.8);
+  border-radius: 50%;
+
+  animation: magicRotate 3s linear infinite;
+}
+
+.magic-circle::after {
+  content: "✧  ✦  ✧";
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+  color: #d4a09c;
+
+  text-shadow:
+    0 0 8px #e9bdb7,
+    0 0 15px #fff;
+
+  animation: magicRotate 4s linear infinite reverse;
+}
+
+@keyframes magicAppear {
+  0% {
+    opacity: 0;
+    scale: .3;
+  }
+
+  25% {
+    opacity: 1;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 1.7;
+  }
+}
+
+@keyframes magicRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.magic-spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 101;
+
+  color: #d7a49e;
+  text-shadow: 0 0 8px #fff;
+
+  animation: sparkFly 1s ease-out forwards;
+}
+
+@keyframes sparkFly {
+  to {
+    opacity: 0;
+    transform:
+      translate(var(--x),var(--y))
+      scale(.2);
+  }
+}
+
+/* =========================
+   메인 화면
+========================= */
+
+header {
+  position: relative;
+  min-height: 95vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 90px 20px 110px;
+  text-align: center;
+}
+
+.header-ornament {
+  color: var(--gold);
+  font-size: 27px;
+  letter-spacing: 15px;
+  opacity: .75;
+
+  margin-bottom: 35px;
+
+  animation: fadeUp 2s ease both;
+}
+
+.english-title {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  font-size: clamp(17px,3vw,24px);
+  letter-spacing: 5px;
+
+  color: #a99583;
+
+  margin-bottom: 25px;
+
+  animation: fadeUp 2s .3s ease both;
+}
+
+h1 {
+  font-family: "Cafe24Oneprettynight", serif;
+
+  font-size: clamp(37px,7vw,70px);
+  font-weight: normal;
+
+  line-height: 1.5;
+  letter-spacing: 5px;
+
+  color: #f9f8f3;
+
+  text-shadow:
+    0 1px 1px #c6ae8b,
+    0 2px 5px rgba(173,144,113,.8),
+    0 0 18px rgba(255,255,255,.9),
+    0 0 35px rgba(197,220,230,.9);
+
+  animation: fadeUp 2.3s .5s ease both;
+}
+
+.title-line {
+  width: 200px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #c6a878,
+    transparent
+  );
+
+  margin: 30px auto;
+
+  animation: fadeUp 2s .8s ease both;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 2.5;
+  letter-spacing: 2px;
+
+  color: #8c8992;
+
+  animation: fadeUp 2s 1s ease both;
+}
+
+.subtitle span {
+  color: #b99d8a;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 45px;
+
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+
+  letter-spacing: 4px;
+  color: #ad9b8c;
+
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   메인 계약서
+========================= */
+
+.main-container {
+  width: min(92%,900px);
+  margin: 0 auto 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.contract {
+  position: relative;
+
+  padding: 65px 55px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      rgba(255,255,255,.95),
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(190,165,124,.018) 0px,
+      rgba(190,165,124,.018) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(
+      135deg,
+      #fffdf7,
+      #f6f0e4 55%,
+      #fffaf1
+    );
+
+  border: 1px solid rgba(199,169,115,.65);
+
+  box-shadow:
+    0 0 0 7px rgba(255,253,247,.5),
+    0 0 0 8px rgba(198,168,120,.3),
+    0 20px 70px rgba(79,91,109,.16),
+    inset 0 0 50px rgba(208,179,125,.12);
+
+  backdrop-filter: blur(10px);
+}
+
+/* 계약서 안쪽 테두리 */
+
+.contract::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+
+  border: 1px solid rgba(194,161,106,.38);
+
+  pointer-events: none;
+}
+
+/* 모서리 장식 */
+
+.corner {
+  position: absolute;
+  font-family: "Cinzel", serif;
+  font-size: 32px;
+
+  color: #c5a977;
+  opacity: .75;
+}
+
+.corner.tl {
+  top: 17px;
+  left: 24px;
+}
+
+.corner.tr {
+  top: 17px;
+  right: 24px;
+}
+
+.corner.bl {
+  bottom: 17px;
+  left: 24px;
+}
+
+.corner.br {
+  bottom: 17px;
+  right: 24px;
+}
+
+.contract-top {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contract-symbol {
+  font-size: 33px;
+  color: #c6a878;
+
+  text-shadow:
+    0 0 12px rgba(224,194,139,.6);
+}
+
+.contract-label {
+  font-family: "Cinzel", serif;
+
+  font-size: 12px;
+  letter-spacing: 5px;
+
+  color: #b49c76;
+  margin-top: 18px;
+}
+
+.contract-heading {
+  margin-top: 20px;
+
+  font-size: 29px;
+  font-weight: normal;
+  letter-spacing: 3px;
+
+  color: #8e7e75;
+}
+
+.contract-description {
+  margin-top: 20px;
+
+  font-size: 16px;
+  line-height: 2.2;
+
+  color: #a29a96;
+}
+
+/* =========================
+   메뉴 버튼
+========================= */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  max-width: 570px;
+  margin: 45px auto;
+}
+
+.menu-button {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  padding: 22px 20px;
+
+  border: 1px solid rgba(193,162,111,.5);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.7),
+      rgba(228,239,243,.3),
+      rgba(255,249,235,.8)
+    );
+
+  color: #8e7c76;
+
+  font-family: "Cafe24Oneprettynight", serif;
+  font-size: 19px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition:
+    transform .4s,
+    box-shadow .4s,
+    background .4s,
+    color .4s;
+}
+
+.menu-button::before {
+  content: "✧";
+  position: absolute;
+  left: 22px;
+
+  color: #c6a878;
+}
+
+.menu-button::after {
+  content: "✧";
+  position: absolute;
+  right: 22px;
+
+  color: #c6a878;
+}
+
+.menu-button:hover {
+  transform: translateY(-4px);
+
+  color: #a18177;
+
+  background:
+    linear-gradient(
+      120deg,
+      #fffdf8,
+      #e9f4f8,
+      #fff7e8
+    );
+
+  box-shadow:
+    0 5px 25px rgba(196,166,130,.25),
+    0 0 18px rgba(201,227,238,.5);
+}
+
+.menu-button.active {
+  background:
+    linear-gradient(
+      120deg,
+      #f6f0e6,
+      #e4f1f6,
+      #f7eee6
+    );
+
+  border-color: #c4a579;
+
+  box-shadow:
+    inset 0 0 15px rgba(212,186,151,.2),
+    0 0 15px rgba(205,224,233,.4);
+}
+
+/* =========================
+   이야기 내용
+========================= */
+
+.story-panel {
+  display: none;
+
+  max-width: 650px;
+  margin: 50px auto 20px;
+
+  padding: 40px 20px;
+
+  border-top: 1px solid rgba(196,168,120,.4);
+  border-bottom: 1px solid rgba(196,168,120,.4);
+
+  text-align: center;
+
+  animation: storyOpen 1s ease both;
+}
+
+.story-panel.show {
+  display: block;
+}
+
+@keyframes storyOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.story-icon {
+  font-size: 28px;
+  color: #c5aa80;
+  margin-bottom: 25px;
+}
+
+.story-title {
+  font-size: 29px;
+  font-weight: normal;
+
+  color: #97857c;
+  letter-spacing: 3px;
+
+  margin-bottom: 15px;
+}
+
+.story-english {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  font-size: 19px;
+  letter-spacing: 3px;
+
+  color: #b6a38e;
+
+  margin-bottom: 35px;
+}
+
+.story-text {
+  font-size: 18px;
+  line-height: 2.5;
+
+  color: #777781;
+
+  word-break: keep-all;
+}
+
+.story-text p {
+  margin-bottom: 27px;
+}
+
+.story-text .highlight {
+  color: #b39486;
+  text-shadow: 0 0 10px rgba(226,192,174,.3);
+}
+
+.story-text .blue {
+  color: #8cb6c9;
+}
+
+.story-divider {
+  margin: 35px 0;
+  color: #c9ac83;
+
+  letter-spacing: 15px;
+  font-size: 17px;
+}
+
+/* =========================
+   에델의 편지
+========================= */
+
+.letter-button {
+  display: inline-block;
+
+  margin-top: 25px;
+  padding: 16px 35px;
+
+  background:
+    linear-gradient(
+      120deg,
+      #f7efe6,
+      #e9f4f7
+    );
+
+  border: 1px solid #c8aa84;
+
+  color: #9b817c;
+
+  font-family: "Cafe24Oneprettynight", serif;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition: .4s;
+}
+
+.letter-button:hover {
+  box-shadow:
+    0 0 25px rgba(218,174,160,.4);
+
+  transform: translateY(-3px);
+}
+
+.secret-letter {
+  display: none;
+
+  margin-top: 35px;
+  padding: 35px 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.8),
+      rgba(230,241,246,.65)
+    );
+
+  border: 1px solid rgba(198,168,120,.4);
+
+  box-shadow:
+    inset 0 0 30px rgba(211,190,155,.12);
+
+  animation: storyOpen 1.5s ease both;
+}
+
+.secret-letter.open {
+  display: block;
+}
+
+.letter-sign {
+  margin-top: 35px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  font-size: 28px;
+  color: #b39b8b;
+}
+
+/* =========================
+   하단 문구
+========================= */
+
+.contract-bottom {
+  margin-top: 50px;
+  text-align: center;
+
+  color: #b8a58a;
+}
+
+.contract-bottom .seal {
+  font-size: 36px;
+  margin-bottom: 15px;
+
+  text-shadow:
+    0 0 15px rgba(207,174,123,.4);
+}
+
+.contract-bottom p {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+footer {
+  padding: 50px 20px 80px;
+  text-align: center;
+
+  font-size: 16px;
+  line-height: 2.4;
+
+  color: #a69d9d;
+}
+
+footer .footer-english {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  font-size: 20px;
+  letter-spacing: 3px;
+
+  color: #b7a58d;
+}
+
+/* =========================
+   모바일 최적화
+========================= */
+
+@media (max-width: 600px) {
+
+  header {
+    min-height: 85vh;
+  }
+
+  h1 {
+    font-size: 39px;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .contract {
+    padding: 60px 25px;
+  }
+
+  .contract-heading {
+    font-size: 25px;
+  }
+
+  .contract-description {
+    font-size: 15px;
+  }
+
+  .menu-button {
+    font-size: 17px;
+    padding: 19px 15px;
+  }
+
+  .menu-button::before {
+    left: 12px;
+  }
+
+  .menu-button::after {
+    right: 12px;
+  }
+
+  .story-title {
+    font-size: 25px;
+  }
+
+  .story-text {
+    font-size: 16px;
+    line-height: 2.4;
+  }
+
+  .story-panel {
+    padding: 35px 5px;
+  }
+
+  .corner {
+    font-size: 23px;
+  }
+
+}
+
+/* 움직임 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 꽃잎 -->
+<div id="petal-container"></div>
+
+<!-- =========================
+     메인 타이틀
+========================= -->
+
+<header>
+
+  <div class="header-ornament">
+    ✧ ❀ ✧
+  </div>
+
+  <div class="english-title">
+    Even If Our Dreams Never Come True
+  </div>
+
+  <h1>
+    이뤄지지 않을<br>
+    꿈이라도
+  </h1>
+
+  <div class="title-line"></div>
+
+  <div class="subtitle">
+    <p>죽음조차 갈라놓지 못한 사랑.</p>
+    <p>그러나, <span>사랑이었기에 놓아주어야 했던 이야기.</span></p>
+  </div>
+
+  <div class="scroll-hint">
+    SCROLL TO UNSEAL<br>
+    ﹀
+  </div>
+
+</header>
+
+<!-- =========================
+     마법 계약서
+========================= -->
+
+<main class="main-container">
+
+  <section class="contract">
+
+    <span class="corner tl">❧</span>
+    <span class="corner tr">❧</span>
+    <span class="corner bl">❧</span>
+    <span class="corner br">❧</span>
+
+    <div class="contract-top">
+
+      <div class="contract-symbol">
+        ✧ ♧ ✧
+      </div>
+
+      <div class="contract-label">
+        THE FORGOTTEN COVENANT
+      </div>
+
+      <h2 class="contract-heading">
+        잊힌 영혼의 계약서
+      </h2>
+
+      <div class="contract-description">
+        이 계약서에 기록된 것은<br>
+        한 마법사가 끝내 놓지 못한 사랑의 흔적.<br><br>
+
+        봉인된 페이지를 열어<br>
+        그의 이야기를 들여다보시겠습니까?
+      </div>
+
+    </div>
+
+    <!-- 메뉴 -->
+
+    <nav class="menu" aria-label="이야기 목차">
+
+      <button class="menu-button" data-target="world">
+        세계관
+      </button>
+
+      <button class="menu-button" data-target="past">
+        지난 이야기
+      </button>
+
+      <button class="menu-button" data-target="edel">
+        에델
+      </button>
+
+      <button class="menu-button" data-target="history">
+        에델의 과거
+      </button>
+
+      <button class="menu-button" data-target="heart">
+        당신을 향한 에델의 마음
+      </button>
+
+    </nav>
+
+    <!-- =====================
+         세계관
+    ====================== -->
+
+    <article class="story-panel" id="world">
+
+      <div class="story-icon">✧</div>
+
+      <h2 class="story-title">
+        세계관
+      </h2>
+
+      <div class="story-english">
+        The World Beyond the Veil
+      </div>
+
+      <div class="story-text">
+
+        <p>
+          이 세계에는 오래전부터<br>
+          하나의 불변하는 법칙이 존재했다.
+        </p>
+
+        <p class="highlight">
+          「죽은 자는 돌아올 수 없다.」
+        </p>
+
+        <p>
+          생과 사의 경계에는<br>
+          신들조차 함부로 넘지 못하는<br>
+          장막이 드리워져 있었다.
+        </p>
+
+        <p>
+          그러나 세상에는<br>
+          그 법칙을 거스를 수 있는<br>
+          금지된 마법이 존재했다.
+        </p>
+
+        <div class="story-divider">
+          ✧ ✦ ✧
+        </div>
+
+        <p>
+          죽은 자의 영혼을 불러내어<br>
+          이승에 붙잡아 두는 마법.
+        </p>
+
+        <p>
+          그 마법을 사용하는 자는<br>
+          자신의 영혼 일부를 대가로 바쳐야 했다.
+        </p>
+
+        <p class="blue">
+          그리고 어느 날,<br>
+          한 마법사가 그 금기를 범했다.
+        </p>
+
+        <p>
+          오직 단 한 사람을<br>
+          다시 만나기 위해.
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- =====================
+         지난 이야기
+    ====================== -->
+
+    <article class="story-panel" id="past">
+
+      <div class="story-icon">❀</div>
+
+      <h2 class="story-title">
+        지난 이야기
+      </h2>
+
+      <div class="story-english">
+        A Love That Arrived Too Late
+      </div>
+
+      <div class="story-text">
+
+        <p>
+          그는 오래도록<br>
+          한 사람을 사랑했다.
+        </p>
+
+        <p>
+          하지만 그 사람의 시선은<br>
+          언제나 다른 이를 향해 있었다.
+        </p>
+
+        <p>
+          그래서 그는 웃으며 말했다.
+        </p>
+
+        <p class="highlight">
+          "행복해야 해."
+        </p>
+
+        <p>
+          자신이 아닌 다른 사람의 곁에서도<br>
+          그저 행복하기만을 바랐다.
+        </p>
+
+        <div class="story-divider">
+          ✧ ✦ ✧
+        </div>
+
+        <p>
+          그러나 시간이 흘러<br>
+          그에게 돌아온 것은<br>
+          행복한 소식이 아니었다.
+        </p>
+
+        <p class="highlight">
+          당신이 죽었다는 소식.
+        </p>
+
+        <p>
+          그날, 그는 처음으로<br>
+          자신의 선택을 후회했다.
+        </p>
+
+        <p>
+          당신을 보내지 않았다면.<br>
+          조금만 더 이기적이었다면.<br>
+          사랑한다고 말했더라면.
+        </p>
+
+        <p class="blue">
+          당신은 아직 살아 있었을까.
+        </p>
+
+        <p>
+          그리고 그는 결심했다.
+        </p>
+
+        <p class="highlight">
+          "이번에는……<br>
+          내가 널 사랑해 줄게."
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- =====================
+         에델 소개
+    ====================== -->
+
+    <article class="story-panel" id="edel">
+
+      <div class="story-icon">♧</div>
+
+      <h2 class="story-title">
+        에델
+      </h2>
+
+      <div class="story-english">
+        Edel — The Forsaken Magician
+      </div>
+
+      <div class="story-text">
+
+        <p>
+          에델.
+        </p>
+
+        <p>
+          창백한 은빛 머리카락과<br>
+          겨울 하늘을 닮은 눈동자를 가진 마법사.
+        </p>
+
+        <p>
+          언제나 다정하게 웃지만,<br>
+          그 미소에는 어딘가<br>
+          설명할 수 없는 슬픔이 묻어 있다.
+        </p>
+
+        <p>
+          사람들은 그를<br>
+          기적을 다루는 마법사라 불렀다.
+        </p>
+
+        <p>
+          하지만 정작 그는<br>
+          자신이 가장 원했던 기적을<br>
+          이루지 못했다.
+        </p>
+
+        <div class="story-divider">
+          ✧ ✦ ✧
+        </div>
+
+        <p class="highlight">
+          "마법으로 무엇이든 할 수 있다면……"
+        </p>
+
+        <p class="blue">
+          "왜 너 하나는<br>
+          지킬 수 없었던 걸까."
+        </p>
+
+        <p>
+          그가 가장 좋아하는 것은<br>
+          하늘색 장미.
+        </p>
+
+        <p>
+          이유는 단순했다.
+        </p>
+
+        <p>
+          언젠가 당신이<br>
+          아름답다고 말했던 꽃이었으니까.
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- =====================
+         에델의 과거
+    ====================== -->
+
+    <article class="story-panel" id="history">
+
+      <div class="story-icon">✦</div>
+
+      <h2 class="story-title">
+        에델의 과거
+      </h2>
+
+      <div class="story-english">
+        Memories Buried in Eternity
+      </div>
+
+      <div class="story-text">
+
+        <p>
+          에델은 아주 오래전부터<br>
+          혼자 있는 것에 익숙했다.
+        </p>
+
+        <p>
+          뛰어난 마법의 재능은<br>
+          그에게 명예를 가져다주었지만,<br>
+          따뜻한 온기까지 주지는 못했다.
+        </p>
+
+        <p>
+          그런 그의 세계에<br>
+          당신이 나타났다.
+        </p>
+
+        <p>
+          당신은 그를 두려워하지 않았고,<br>
+          그의 마법보다<br>
+          그의 외로움을 먼저 바라보았다.
+        </p>
+
+        <div class="story-divider">
+          ✧ ✦ ✧
+        </div>
+
+        <p>
+          어느 봄날,<br>
+          당신은 그에게 장미 한 송이를 건넸다.
+        </p>
+
+        <p class="highlight">
+          "에델, 이 꽃은 꼭 네 눈을 닮았어."
+        </p>
+
+        <p>
+          그날 이후<br>
+          그는 하늘색 장미를 좋아하게 되었다.
+        </p>
+
+        <p>
+          그리고 당신을 사랑하게 되었다.
+        </p>
+
+        <p>
+          하지만 그는 끝내<br>
+          그 마음을 고백하지 않았다.
+        </p>
+
+        <p class="blue">
+          당신이 다른 사람을<br>
+          사랑하고 있었으니까.
+        </p>
+
+        <p>
+          그는 자신의 사랑보다<br>
+          당신의 행복을 선택했다.
+        </p>
+
+        <p>
+          그것이 훗날<br>
+          영원히 후회하게 될 선택이라는 것도<br>
+          모른 채.
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- =====================
+         당신을 향한 마음
+    ====================== -->
+
+    <article class="story-panel" id="heart">
+
+      <div class="story-icon">♡</div>
+
+      <h2 class="story-title">
+        당신을 향한 에델의 마음
+      </h2>
+
+      <div class="story-english">
+        To You, Beyond Death
+      </div>
+
+      <div class="story-text">
+
+        <p>
+          에델은 당신을 사랑한다.
+        </p>
+
+        <p>
+          살아 있을 때도.<br>
+          죽은 뒤에도.
+        </p>
+
+        <p>
+          그리고 아마,<br>
+          자신의 영혼이 사라지는 순간까지도.
+        </p>
+
+        <p>
+          그는 당신을 다시 불러냈다.
+        </p>
+
+        <p>
+          당신이 이승을 떠나지 못하도록<br>
+          금지된 마법까지 걸었다.
+        </p>
+
+        <p class="highlight">
+          "미안해."
+        </p>
+
+        <p>
+          그 말이 당신을 향한 사과인지,<br>
+          자신을 향한 변명인지<br>
+          그조차 알지 못했다.
+        </p>
+
+        <div class="story-divider">
+          ✧ ✦ ✧
+        </div>
+
+        <p>
+          그의 책상 서랍에는<br>
+          오래된 편지 한 통이 놓여 있다.
+        </p>
+
+        <p>
+          수없이 쓰고 지웠지만<br>
+          끝내 당신에게 전하지 못한 편지.
+        </p>
+
+        <p class="blue">
+          그 편지를 열어 보시겠습니까?
+        </p>
+
+        <button
+          class="letter-button"
+          id="letter-button"
+          aria-expanded="false"
+          aria-controls="secret-letter"
+        >
+          ✧ 에델의 편지 열기 ✧
+        </button>
+
+        <div class="secret-letter" id="secret-letter">
+
+          <p>
+            사랑하는 당신에게.
+          </p>
+
+          <p>
+            오늘도 네가 없는 세상에는<br>
+            어김없이 아침이 찾아왔어.
+          </p>
+
+          <p>
+            참 이상하지.
+          </p>
+
+          <p>
+            내 세상은 그날 멈춰 버렸는데,<br>
+            세상은 아무 일도 없었다는 듯<br>
+            계속 흘러가더라.
+          </p>
+
+          <p>
+            나는 아직도<br>
+            네가 웃던 모습을 기억해.
+          </p>
+
+          <p>
+            네가 좋아하던 꽃도,<br>
+            네가 부르던 내 이름도.
+          </p>
+
+          <p>
+            그러니 제발,<br>
+            조금만 더 내 곁에 있어 줘.
+          </p>
+
+          <p class="highlight">
+            나를 사랑하지 않아도 괜찮아.
+          </p>
+
+          <p>
+            나를 원망해도 괜찮아.
+          </p>
+
+          <p>
+            그저 네가 이곳에 있다는 사실만으로<br>
+            나는 다시 살아갈 수 있을 것 같거든.
+          </p>
+
+          <p>
+            ……하지만.
+          </p>
+
+          <p>
+            언젠가 네가 정말로<br>
+            떠나고 싶다고 말한다면.
+          </p>
+
+          <p>
+            그때는 내가……<br>
+            널 놓아줄 수 있을까.
+          </p>
+
+          <p class="blue">
+            이뤄지지 않을 꿈이라도,<br>
+            나는 여전히 너를 꿈꾸고 있어.
+          </p>
+
+          <div class="letter-sign">
+            Forever Yours,<br>
+            Edel
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- 계약서 하단 -->
+
+    <div class="contract-bottom">
+
+      <div class="seal">
+        ❀
+      </div>
+
+      <p>
+        Bound by Love, Separated by Fate.
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="footer-english">
+    Even If Our Dreams Never Come True
+  </div>
+
+  <p>
+    사랑은 때로 기적보다 잔인하다.
+  </p>
+
+  <p>
+    ✧ 𝑬𝒅𝒆𝒍 ✧
+  </p>
+
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   하늘색 장미꽃잎 생성
+========================= */
+
+const petalContainer =
+  document.getElementById("petal-container");
+
+function createPetal() {
+
+  const petal = document.createElement("div");
+
+  petal.className = "petal";
+
+  const size = Math.random() * 13 + 10;
+  const duration = Math.random() * 8 + 10;
+  const drift = Math.random() * 300 - 150;
+
+  petal.style.left =
+    Math.random() * 100 + "vw";
+
+  petal.style.width =
+    size + "px";
+
+  petal.style.height =
+    size * 1.4 + "px";
+
+  petal.style.opacity =
+    Math.random() * .4 + .4;
+
+  petal.style.setProperty(
+    "--drift",
+    drift + "px"
+  );
+
+  petal.style.animationDuration =
+    duration + "s";
+
+  petalContainer.appendChild(petal);
+
+  setTimeout(() => {
+    petal.remove();
+  }, duration * 1000 + 100);
+
+}
+
+/* 처음부터 꽃잎이 보이도록 생성 */
+
+for (let i = 0; i < 18; i++) {
+  setTimeout(createPetal, i * 250);
+}
+
+/* 계속 흩날리는 꽃잎 */
+
+setInterval(createPetal, 650);
+
+
+/* =========================
+   별빛 생성
+========================= */
+
+function createStars() {
+
+  for (let i = 0; i < 45; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+      Math.random() * 100 + "vw";
+
+    star.style.top =
+      Math.random() * 100 + "vh";
+
+    star.style.animationDelay =
+      Math.random() * 5 + "s";
+
+    star.style.animationDuration =
+      Math.random() * 3 + 2 + "s";
+
+    document.body.appendChild(star);
+
+  }
+
+}
+
+createStars();
+
+
+/* =========================
+   클릭 시 로즈골드 마법진
+========================= */
+
+document.addEventListener("click", function(event) {
+
+  const x = event.clientX;
+  const y = event.clientY;
+
+  /* 원형 마법진 */
+
+  const circle = document.createElement("div");
+
+  circle.className = "magic-circle";
+
+  circle.style.left = x + "px";
+  circle.style.top = y + "px";
+
+  document.body.appendChild(circle);
+
+  setTimeout(() => {
+    circle.remove();
+  }, 1300);
+
+  /* 주변 반짝임 */
+
+  for (let i = 0; i < 9; i++) {
+
+    const spark = document.createElement("div");
+
+    spark.className = "magic-spark";
+    spark.textContent = "✧";
+
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    const distance =
+      Math.random() * 65 + 25;
+
+    const dx =
+      Math.cos(angle) * distance;
+
+    const dy =
+      Math.sin(angle) * distance;
+
+    spark.style.setProperty(
+      "--x",
+      dx + "px"
+    );
+
+    spark.style.setProperty(
+      "--y",
+      dy + "px"
+    );
+
+    spark.style.fontSize =
+      Math.random() * 10 + 10 + "px";
+
+    document.body.appendChild(spark);
+
+    setTimeout(() => {
+      spark.remove();
+    }, 1100);
+
+  }
+
+});
+
+
+/* =========================
+   메뉴 클릭 시 이야기 열기
+========================= */
+
+const menuButtons =
+  document.querySelectorAll(".menu-button");
+
+const storyPanels =
+  document.querySelectorAll(".story-panel");
+
+menuButtons.forEach(button => {
+
+  button.addEventListener("click", function() {
+
+    const targetId =
+      this.getAttribute("data-target");
+
+    const targetPanel =
+      document.getElementById(targetId);
+
+    const wasOpen =
+      targetPanel.classList.contains("show");
+
+    /* 모든 메뉴 초기화 */
+
+    menuButtons.forEach(btn => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+    });
+
+    storyPanels.forEach(panel => {
+      panel.classList.remove("show");
+    });
+
+    /* 이미 열려 있으면 닫기 */
+
+    if (wasOpen) {
+      return;
+    }
+
+    /* 선택한 이야기 열기 */
+
+    this.classList.add("active");
+    this.setAttribute("aria-expanded", "true");
+
+    targetPanel.classList.add("show");
+
+    /* 부드럽게 내용으로 이동 */
+
+    setTimeout(() => {
+
+      targetPanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }, 150);
+
+  });
+
+  button.setAttribute("aria-expanded", "false");
+
+});
+
+
+/* =========================
+   에델의 편지 열기
+========================= */
+
+const letterButton =
+  document.getElementById("letter-button");
+
+const secretLetter =
+  document.getElementById("secret-letter");
+
+letterButton.addEventListener("click", function() {
+
+  const isOpen =
+    secretLetter.classList.contains("open");
+
+  if (isOpen) {
+
+    secretLetter.classList.remove("open");
+
+    letterButton.textContent =
+      "✧ 에델의 편지 열기 ✧";
+
+    letterButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  } else {
+
+    secretLetter.classList.add("open");
+
+    letterButton.textContent =
+      "✧ 편지 접기 ✧";
+
+    letterButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    setTimeout(() => {
+
+      secretLetter.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    }, 200);
+
+  }
+
+});
+
+
+/* =========================
+   모바일 성능 및 접근성
+========================= */
+
+const reducedMotion =
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+if (reducedMotion.matches) {
+
+  /* 움직임을 줄이는 사용자 설정 존중 */
+
+  document.querySelectorAll(".petal").forEach(
+    petal => petal.remove()
+  );
+
+}
+
+</script>
+
+</body>
+</html>
